@@ -8,6 +8,35 @@ set(testRef, {
     status: 'connected'
 });
 */
+let player;
+let audioBtn;
+let playIcon;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'K0wOir-29fY',
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        playIcon.classList.remove('play-icon');
+        playIcon.classList.add('pause-icon');
+    } else {
+        playIcon.classList.remove('pause-icon');
+        playIcon.classList.add('play-icon');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const magnifier = document.querySelector('.magnifying-glass');
@@ -20,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const transportPopup = document.getElementById('transportPopup');
     const dreamPopup = document.getElementById('dreamPopup');
     const closeButtons = document.querySelectorAll('.close-btn');
-    const audioBtn = document.getElementById('playPauseBtn');
-const playIcon = audioBtn.querySelector('.play-icon');
+    audioBtn = document.getElementById('playPauseBtn');
+    playIcon = audioBtn.querySelector('.play-icon');
 
     function updateZoom(e) {
         const rect = artwork.getBoundingClientRect();
@@ -76,43 +105,23 @@ const playIcon = audioBtn.querySelector('.play-icon');
         return colors[Math.floor(Math.random() * colors.length)];
     }
 
-function showAnswerPopup(answer, index) {
-    overlay.style.display = 'block';
-    const popup = document.getElementById(`answer${index + 1}Popup`);
-    popup.querySelector('.answer-text').textContent = answer;
-    popup.style.display = 'block';
-    setTimeout(() => {
-        popup.classList.add('show');
-    }, 10);
-}
+    function showAnswerPopup(answer, index) {
+        overlay.style.display = 'block';
+        const popup = document.getElementById(`answer${index + 1}Popup`);
+        popup.querySelector('.answer-text').textContent = answer;
+        popup.style.display = 'block';
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, 10);
+    }
 
-function handleReveal() {
-    inputs.forEach((input, index) => {
-        if (input.value.trim()) {
-            showAnswerPopup(input.value, index);
-        }
-    });
-}
-
-
-// Update the close functionality
-closeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const popup = button.parentElement;
-        if (popup.classList.contains('answer-popup')) {
-            popup.classList.remove('show');
-            setTimeout(() => {
-                popup.style.display = 'none';
-                overlay.style.display = 'none';
-            }, 500);
-        } else {
-            overlay.style.display = 'none';
-            popup.style.display = 'none';
-        }
-    });
-});
-
-
+    function handleReveal() {
+        inputs.forEach((input, index) => {
+            if (input.value.trim()) {
+                showAnswerPopup(input.value, index);
+            }
+        });
+    }
 
     // Event Listeners
     artwork.addEventListener('mousemove', updateZoom);
@@ -123,6 +132,22 @@ closeButtons.forEach(button => {
     plusIcon.addEventListener('click', () => {
         overlay.style.display = 'block';
         bioPopup.style.display = 'block';
+    });
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const popup = button.parentElement;
+            if (popup.classList.contains('answer-popup')) {
+                popup.classList.remove('show');
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                    overlay.style.display = 'none';
+                }, 500);
+            } else {
+                overlay.style.display = 'none';
+                popup.style.display = 'none';
+            }
+        });
     });
 
     overlay.addEventListener('click', () => {
@@ -142,35 +167,15 @@ closeButtons.forEach(button => {
             }
         });
     });
-});
 
-let player;
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'YOUR_VIDEO_ID', // Replace with your YouTube video ID
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0
-        },
-        events: {
-            'onStateChange': onPlayerStateChange
+    audioBtn.addEventListener('click', () => {
+        if (player.getPlayerState() !== 1) {
+            player.playVideo();
+        } else {
+            player.pauseVideo();
         }
     });
-}
-
-audioBtn.addEventListener('click', () => {
-    if (player.getPlayerState() !== 1) {
-        player.playVideo();
-        playIcon.classList.remove('play-icon');
-        playIcon.classList.add('pause-icon');
-    } else {
-        player.pauseVideo();
-        playIcon.classList.remove('pause-icon');
-        playIcon.classList.add('play-icon');
-    }
 });
+
 
 
