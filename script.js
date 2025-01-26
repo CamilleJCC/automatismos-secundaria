@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const transportPopup = document.getElementById('transportPopup');
     const dreamPopup = document.getElementById('dreamPopup');
     const closeButtons = document.querySelectorAll('.close-btn');
-    audioBtn = document.getElementById('playPauseBtn');
-    playIcon = audioBtn.querySelector('.play-icon');
 
     function updateZoom(e) {
         const rect = artwork.getBoundingClientRect();
@@ -138,15 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    audioBtn.addEventListener('click', () => {
-        if (player.getPlayerState() !== 1) {
-            player.playVideo();
-        } else {
-            player.pauseVideo();
-        }
-    });
-});
 
 
 
