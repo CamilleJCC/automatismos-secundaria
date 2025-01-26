@@ -36,6 +36,22 @@ function onPlayerStateChange(event) {
         playIcon.classList.add('play-icon');
     }
 }
+function updateProgress() {
+    const progress = document.getElementById('progress');
+    setInterval(() => {
+        if (player && player.getCurrentTime && player.getDuration) {
+            const percentage = (player.getCurrentTime() / player.getDuration()) * 100;
+            progress.style.width = percentage + '%';
+        }
+    }, 1000);
+}
+
+// Add this to your onYouTubeIframeAPIReady function
+events: {
+    'onStateChange': onPlayerStateChange,
+    'onReady': updateProgress
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
