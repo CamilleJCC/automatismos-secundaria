@@ -78,7 +78,7 @@ h1 {
     margin-bottom: clamp(1rem, 3vw, 1.25rem);
 }
 h2{
-    width:65%;
+    width:100%;
     font-size: clamp(1.25rem, 1.5rem, 20px);
     line-height: clamp(1.5rem, 1.875rem, 24px);
 }
@@ -99,7 +99,7 @@ li {
     padding-bottom: 15px;
     color: var(--secondary-color);
     margin-left: 1.65rem;
-    width: 63%;
+    width: 100%;
 }
 
 /* Remove marker for dashed list items */
@@ -116,6 +116,19 @@ li {
 ::marker {
   content: "0" counter(list-item) "  ";
   color: #87BAFA;
+}
+
+.poem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 3rem;
+}
+
+.poem p {
+    padding-right:0px;
 }
 
 .artwork {
