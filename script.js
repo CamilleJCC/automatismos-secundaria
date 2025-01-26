@@ -8,26 +8,38 @@ set(testRef, {
     status: 'connected'
 });
 */
+// Add this at the very top of your script.js, outside any event listeners
 let player;
-let audioBtn;
-let playIcon;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '0',
         width: '0',
-        videoId: 'K0wOir-29fY',
+        videoId: 'K0wOir-29fY', // Your video ID
         playerVars: {
             'autoplay': 0,
             'controls': 0
         },
         events: {
+            'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
         }
     });
 }
 
+function onPlayerReady(event) {
+    const audioBtn = document.getElementById('playPauseBtn');
+    audioBtn.addEventListener('click', () => {
+        if (player.getPlayerState() !== 1) {
+            player.playVideo();
+        } else {
+            player.pauseVideo();
+        }
+    });
+}
+
 function onPlayerStateChange(event) {
+    const playIcon = document.querySelector('.play-icon');
     if (event.data === YT.PlayerState.PLAYING) {
         playIcon.classList.remove('play-icon');
         playIcon.classList.add('pause-icon');
@@ -36,6 +48,7 @@ function onPlayerStateChange(event) {
         playIcon.classList.add('play-icon');
     }
 }
+
 function updateProgress() {
     const progress = document.getElementById('progress');
     setInterval(() => {
@@ -44,12 +57,6 @@ function updateProgress() {
             progress.style.width = percentage + '%';
         }
     }, 1000);
-}
-
-// Add this to your onYouTubeIframeAPIReady function
-events: {
-    'onStateChange': onPlayerStateChange,
-    'onReady': updateProgress
 }
 
 
