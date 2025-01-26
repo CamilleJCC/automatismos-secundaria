@@ -129,6 +129,9 @@ li {
 
 .poem p {
     padding-right:0px;
+    background: #b5f0de;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .artwork {
