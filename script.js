@@ -8,39 +8,6 @@ set(testRef, {
     status: 'connected'
 });
 */
-function onPlayerReady(event) {
-    const audioBtn = document.getElementById('playPauseBtn');
-    audioBtn.addEventListener('click', () => {
-        if (player.getPlayerState() !== 1) {
-            player.playVideo();
-        } else {
-            player.pauseVideo();
-        }
-    });
-}
-
-function onPlayerStateChange(event) {
-    const playIcon = document.querySelector('.play-icon');
-    if (event.data === YT.PlayerState.PLAYING) {
-        playIcon.classList.remove('play-icon');
-        playIcon.classList.add('pause-icon');
-    } else {
-        playIcon.classList.remove('pause-icon');
-        playIcon.classList.add('play-icon');
-    }
-}
-
-function updateProgress() {
-    const progress = document.getElementById('progress');
-    setInterval(() => {
-        if (player && player.getCurrentTime && player.getDuration) {
-            const percentage = (player.getCurrentTime() / player.getDuration()) * 100;
-            progress.style.width = percentage + '%';
-        }
-    }, 1000);
-}
-
-
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const magnifier = document.querySelector('.magnifying-glass');
