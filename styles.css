@@ -330,10 +330,7 @@ ul.dashed > li:before {
     display: none;
 }
 .audio-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
+    position: relative;
 }
 
 .audio-btn {
@@ -366,6 +363,24 @@ ul.dashed > li:before {
     height: 14px;
     background: white;
     clip-path: polygon(0 0, 40% 0, 40% 100%, 0 100%, 60% 0, 100% 0, 100% 100%, 60% 100%);
+}
+.progress-bar {
+    position: absolute;
+    top: -10px;
+    left: -100px;
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 2px;
+    transition: width 0.1s linear;
 }
 
 
