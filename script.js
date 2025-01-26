@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const transportPopup = document.getElementById('transportPopup');
     const dreamPopup = document.getElementById('dreamPopup');
     const closeButtons = document.querySelectorAll('.close-btn');
+    const audioBtn = document.getElementById('playPauseBtn');
+const playIcon = audioBtn.querySelector('.play-icon');
 
     function updateZoom(e) {
         const rect = artwork.getBoundingClientRect();
@@ -142,5 +144,33 @@ closeButtons.forEach(button => {
     });
 });
 
+let player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'YOUR_VIDEO_ID', // Replace with your YouTube video ID
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+audioBtn.addEventListener('click', () => {
+    if (player.getPlayerState() !== 1) {
+        player.playVideo();
+        playIcon.classList.remove('play-icon');
+        playIcon.classList.add('pause-icon');
+    } else {
+        player.pauseVideo();
+        playIcon.classList.remove('pause-icon');
+        playIcon.classList.add('play-icon');
+    }
+});
 
 
