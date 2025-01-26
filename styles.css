@@ -325,6 +325,45 @@ ul.dashed > li:before {
     z-index: 999;
     display: none;
 }
+.audio-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.audio-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.play-icon, .pause-icon {
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.play-icon {
+    border-width: 8px 0 8px 12px;
+    border-color: transparent transparent transparent white;
+    margin-left: 2px;
+}
+
+.pause-icon {
+    width: 12px;
+    height: 14px;
+    background: white;
+    clip-path: polygon(0 0, 40% 0, 40% 100%, 0 100%, 60% 0, 100% 0, 100% 100%, 60% 100%);
+}
+
 
 @keyframes sparkleOut {
     0% { transform: scale(0); opacity: 1; }
