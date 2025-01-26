@@ -74,23 +74,43 @@ document.addEventListener('DOMContentLoaded', () => {
         return colors[Math.floor(Math.random() * colors.length)];
     }
 
-    function showAnswerPopup(answer, index) {
-        overlay.style.display = 'block';
-        const popup = document.getElementById(`answer${index + 1}Popup`);
-        popup.querySelector('.answer-text').textContent = answer;
-        popup.style.display = 'block';
-        setTimeout(() => {
-            popup.classList.add('show');
-        }, 10);
-    }
+function showAnswerPopup(answer, index) {
+    overlay.style.display = 'block';
+    const popup = document.getElementById(`answer${index + 1}Popup`);
+    popup.querySelector('.answer-text').textContent = answer;
+    popup.style.display = 'block';
+    setTimeout(() => {
+        popup.classList.add('show');
+    }, 10);
+}
 
-    function handleReveal() {
-        inputs.forEach((input, index) => {
-            if (input.value.trim()) {
-                showAnswerPopup(input.value, index);
-            }
-        });
-    }
+function handleReveal() {
+    inputs.forEach((input, index) => {
+        if (input.value.trim()) {
+            showAnswerPopup(input.value, index);
+        }
+    });
+}
+
+
+// Update the close functionality
+closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const popup = button.parentElement;
+        if (popup.classList.contains('answer-popup')) {
+            popup.classList.remove('show');
+            setTimeout(() => {
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+            }, 500);
+        } else {
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+        }
+    });
+});
+
+
 
     // Event Listeners
     artwork.addEventListener('mousemove', updateZoom);
@@ -101,22 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
     plusIcon.addEventListener('click', () => {
         overlay.style.display = 'block';
         bioPopup.style.display = 'block';
-    });
-
-    closeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const popup = button.parentElement;
-            if (popup.classList.contains('answer-popup')) {
-                popup.classList.remove('show');
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                    overlay.style.display = 'none';
-                }, 500);
-            } else {
-                overlay.style.display = 'none';
-                popup.style.display = 'none';
-            }
-        });
     });
 
     overlay.addEventListener('click', () => {
@@ -136,6 +140,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-
+});
 
