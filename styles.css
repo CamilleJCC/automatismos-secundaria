@@ -99,7 +99,6 @@ li {
     padding-bottom: 15px;
     color: var(--secondary-color);
     margin-left: 1.65rem;
-    width: 100%;
 }
 
 /* Remove marker for dashed list items */
