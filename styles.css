@@ -523,7 +523,7 @@ ul.dashed > li:before {
 /* Media Queries */
 @media (min-width: 768px) {
     .investigation-container {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         padding: 0rem 1rem;
         align-items: center;
         gap: 4rem;
