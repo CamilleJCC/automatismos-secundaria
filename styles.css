@@ -574,4 +574,8 @@ ul.dashed > li:before {
     right: 0px;
     padding: 0.9rem 2rem;
 }
+    .poem {
+    gap: 20px;
+    padding-bottom: 3rem;
+}
 }
