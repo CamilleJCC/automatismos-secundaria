@@ -213,11 +213,12 @@ background: #b5f0de;
     margin-bottom: clamp(1rem, 2vw, 1.25rem);
 }
 .tooltip-container {
-    position: relative;
+position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    justify-content: flex-end;
 }
 
 .plus-icon {
@@ -265,13 +266,15 @@ background: #b5f0de;
 
 
 .tooltip-text {
-visibility: hidden;
-    position: relative;
-    background: #87bafa;
+ position: absolute;
+    visibility: hidden;
+    display: none;
+    background: #c4e0ff;
     border-radius: 100px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: max-content;
-    margin-left: 10px;
+    right: 38px;
+    top: -4px;
     z-index: 1000;
     font-size: 1rem;
     padding: 0.6rem 1.3rem;
@@ -520,7 +523,7 @@ ul.dashed > li:before {
 /* Media Queries */
 @media (min-width: 768px) {
     .investigation-container {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr 1fr;
         padding: 0rem 1rem;
         align-items: center;
         gap: 4rem;
@@ -550,12 +553,25 @@ ul.dashed > li:before {
 }
 @media (max-width:1000px){
     h2 {
-        width:100%;
+        width: 95%;
+        padding: 0px;
     }
     li {
-        width:100%;
+        width:86%;
     }
     .popup {
-        width: 77%;
+     width: 92%;
+    padding: 30px 22px;
     }
+    .investigation-container{
+        width: 100vw;
+        padding-bottom: 132px;
+    }
+    .tooltip-text {
+    border-radius: 20px;
+    width: 100%;
+    top: 38px;
+    right: 0px;
+    padding: 0.9rem 2rem;
+}
 }
