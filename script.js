@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealBtn = document.querySelector('.reveal-btn');
     const inputs = document.querySelectorAll('.magic-input');
     const plusBtn = document.getElementById('plusBtn');
-    const bioPopup = document.getElementById('bioPopup');
     const plusPopup = document.getElementById('tooltipText');
     const overlay = document.getElementById('overlay');
     const closeButtons = document.querySelectorAll('.close-btn');
@@ -93,13 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
     artwork.addEventListener('mouseleave', () => {
         magnifier.style.display = 'none';
     });
-
-    // Bio icon opens bio
-    bioBtn.addEventListener('click', () => {
-        overlay.style.display = 'block';
-        bioPopup.style.display = 'block';
-    });
-      // Plus icon opens bio
+    
+      // Plus icon opens tooltip
   plusBtn.addEventListener('click', () => {
     if (tooltipText.style.visibility === 'visible') {
         tooltipText.style.visibility = 'hidden';
@@ -108,11 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tooltipText.style.visibility = 'visible';
         tooltipText.style.display = 'block';
     }
-});
-
-    artistName.addEventListener('click', () => {
-    overlay.style.display = 'block';
-    bioPopup.style.display = 'block';
 });
 
     // Close on overlay click
