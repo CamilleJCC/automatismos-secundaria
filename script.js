@@ -114,22 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.display = 'block';
     bioPopup.style.display = 'block';
 });
-    // Close functionality
-    closeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const popup = button.closest('.popup');
-            if (popup.classList.contains('transport-popup')) {
-                popup.classList.remove('show');
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                    overlay.style.display = 'none';
-                }, 500);
-            } else {
-                overlay.style.display = 'none';
-                popup.style.display = 'none';
-            }
-        });
-    });
 
     // Close on overlay click
  closeButtons.forEach(button => {
